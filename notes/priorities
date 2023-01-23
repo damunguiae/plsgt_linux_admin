@@ -1,0 +1,12 @@
+Balancing process priorities
+
+In order to balance the resources of processes that compete for the resources of a system, you can use the tool "nice".
+
+nice -<nice level> <proccess> 
+renice -<nice level> <process id> Renice can be used to assing a different level of nice to an existing process.
+
+zero is a neutral level of nice, 19 is the nicesest a process can be. Being "nice" means how much of your resources a process is willing to share.
+
+
+
+

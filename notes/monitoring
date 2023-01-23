@@ -1,0 +1,59 @@
+Why monitor the resources of a linux instances?
+
+Understand when is time for a hardware upgrade.
+Indeitify rouge processes consuming resources.
+Presenting the data in a meaningful way,
+
+Tools that We can use:
+
+* /proc virtual fiels in this directory contains key system information, like capacity of memory.
+These files are virtual because they are created dinamically.
+
+* top command contains information about the processes that are running in a system.
+
+* free command shows show much RAM is available to use in a system
+	you can use the -h command to get a more clear display
+
+* df shows the state of storage devices and filter by partitions	
+	use the argument -t ext4 to filter by system file
+	use the argument -h to get a better display of the information.
+
+* iftop  shows network's usage information, has to be installed tho.
+	you can specify which network's interface trace by using the -i argument with the name of the interface.
+	very useful when monitoring an applicaiton that is making heavy http calls to a remote server.
+
+* ip/ifconfig shows network's adapter information. May come installed depending on your linux distro.
+	ifconfig comes in the net-tools package.
+
+Monitor process event data
+
+* ps - display any processes running within the current shell
+
+* ps aux - display any process running whitin the entire system
+
+* journald - with the  journalctl command you can get system logs
+	you can use the --since argument and a time query to narrow the results
+	example journalctl --since "10 minutes ago"
+
+* Most of system logs are stored in the /var/logs folder, you can check for your logs files there like
+	auth.log - authentication relateed logs
+	dpkg.log - Ubuntu apt logs
+	syslog - most of logs entry are entered here first, so you can check that file also.
+
+* dmesg - Kernel ring buffer logs are stored in /var/dmesg and can be obteined with the commend dmesg
+	The kernerl ring buffer store the logs prior the boot of the syslog daemon so we don't loose that information.
+
+* you can use kill and killall to kill a process
+	kill <process id> 
+	kilall <process name> <----- can kill all instances of the same process, be careful
+
+
+	
+
+	
+
+
+
+
+	
+

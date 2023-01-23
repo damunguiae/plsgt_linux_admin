@@ -1,0 +1,50 @@
+
+Admin best practices
+
+* Never log in using a root account. If you need to do this to manage all of the other accounts, you can setup an administration account by
+  adding a user to the sudo  user group.
+
+* Create accounts for each user
+
+* Assing only the necessary permissions to each users
+
+
+Account Data
+
+all users encrypted password are stored in the /etc/shadow file
+
+Another file that contains account's data is /etc/passwd
+It no longer contains password information, at least not in newest kernel's versions.
+an /etc/passwd is composed like this:
+
+<user name>:<x <-this inicates an existence of a password in the shadow file >:<user id>:<group id>
+:<location of the user's home directory, can be ,,, if empty>:<location of the user's default shell>
+
+/etc/group file is mostly the same, contains information about the groups present in the system and which users belongs to each group
+
+the sintax is like <group name>:<x <- means that users in the group have a password set>:<the list of users tha belongs to this group,
+ separated by commas>
+
+Account's activity data
+
+*you can get all this information easily by user by executing the command id <user's name>
+
+*you can see which users have sessions in a system using the command "who"
+
+*you can use the "w" command to show the same as "who" but also add what are they doing
+
+*you can use the "last" command to show all the logins for the system
+
+
+Access Control - Managing users and groups
+
+*Create new users with "useradd" commnad - > sudo useradd -m <user name> ; -m creates the user's directory in the home directory
+*You can assing a new password to a user using the passwd command, like this: sudo passwd <user's name>
+	next time <user's name> logs in, the password can be changed with the same passwd command but without being in the sudo group (don't use sudo)
+
+
+*new user's home file gets their home directory builded with the files that are presents in the /etc/skel directory
+*you can change or add files here and the new users home page automatically will have them
+*you can use the "group add" command to create a new group
+*you can the "chown" command to change the group's ownershit of directory and files like this sudo chown :<groups name>:<user name, can be empty> <file or directory path>
+*you can use "usermod" command to add a user to a group, like this sudo usermod -a<add> -G<Group> <group's name> <user's name>
